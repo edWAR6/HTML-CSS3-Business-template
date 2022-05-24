@@ -17,6 +17,9 @@
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
 
         <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+        <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js" integrity="sha512-kp7YHLxuJDJcOzStgd6vtpxr4ZU9kjn77e6dBsivSz+pUuAuMlE2UTdKB7jjsWT84qbS8kdCWHPETnP/ctrFsA==" crossorigin="anonymous"></script>
     </head>
 <!--
 Vanilla Template
@@ -43,6 +46,33 @@ https://templatemo.com/tm-526-vanilla
                     <a href="#services">Discover More</a>
                 </div>
             </div>
+            <div id="my-react-component"></div>
+            <script type="text/babel">
+                class MyReactButton extends React.Component {
+                    constructor(props) {
+                        super(props);
+                        this.state = {pressed: false};
+                    }
+                    render() {
+                        const text = this.state.pressed? 'On' : 'Off';
+                        const button = this.state.pressed? 'btn-primary' : 'btn-secondary';
+                        console.log(button);
+                        return (
+                            <React.Fragment>
+                                <h1>Hello React!</h1>
+                                <button
+                                    type="button"
+                                    class={'btn ' + button + ' btn-lg'}
+                                    onClick={()=>this.setState({ pressed: !this.state.pressed })}
+                                >
+                                    {text}
+                                </button>
+                            </React.Fragment>
+                        )
+                    }
+                }
+                ReactDOM.render(<MyReactButton />, document.getElementById('my-react-component'))
+            </script>
         </div>
     </div>
 
